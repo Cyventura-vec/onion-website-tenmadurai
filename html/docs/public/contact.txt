@@ -1,0 +1,5 @@
+Research enquiries: research@projectkumari.onion
+Technical issues with the portal or desktop companion: tech@projectkumari.onion
+
+Note: the Obsidian desktop companion app is required to access certain
+archive documents. Contact the tech team for the installation package.

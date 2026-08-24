@@ -1,0 +1,3 @@
+Options -Indexes
+DirectoryIndex index.php
+# Default Apache error pages only — do not override with ErrorDocument.

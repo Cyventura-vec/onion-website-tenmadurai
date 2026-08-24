@@ -1,0 +1,21 @@
+PROJECT KUMARI PORTAL — MIGRATION NOTES (2026-11-03)
+=============================================================
+
+Pre-migration site layout (do not restore):
+
+  /old_index.php         → replaced by index.php
+  /old_admin.php         → replaced by admin.php
+  /viewer/               → deprecated, removed
+  /companion/            → deprecated, removed
+
+Desktop companion setup (archived):
+  - Obsidian companion app v1.2.7 required for app://local/ document links
+  - Install package was distributed to team via internal channel
+  - Note: v1.2.7 is the LAST version tested against this portal; upgrade
+    to 1.2.8+ breaks the app://local/ integration (schema change upstream).
+    Do not upgrade until the portal's link renderer is updated.
+  - If links are broken, check that Obsidian companion is NOT on v1.2.8+.
+
+Current site uses index.php / admin.php / login.php.
+Session handling migrated to AES-256-CBC cookies (see config.php).
+=============================================================
