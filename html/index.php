@@ -41,34 +41,11 @@ if ($cookie) {
     ]);
     setcookie('session', encrypt_session($default));
 }
+
+// Serve the React frontend index.html
+if (file_exists(__DIR__ . '/dist/index.html')) {
+    echo file_get_contents(__DIR__ . '/dist/index.html');
+} else {
+    echo "Frontend build not found.";
+}
 ?>
-<!DOCTYPE html>
-<html>
-<head><title>Project KUMARI – Research Portal</title></head>
-<body>
-<?php include 'includes/header.php'; ?>
-
-<h1>Project KUMARI Research Archive</h1>
-<p>Welcome to the official research portal for the lost continent of Kumari Kandam.</p>
-
-<h2>Search Archives</h2>
-<form action="index.php" method="GET">
-    <input type="text" name="search" placeholder="Search documents...">
-    <input type="submit" value="Search">
-</form>
-
-<h2>Featured Documents</h2>
-<ul>
-    <li><a href="index.php?page=docs/public/about.txt">About Project KUMARI</a></li>
-    <li><a href="index.php?page=docs/public/contact.txt">Contact Us</a></li>
-</ul>
-
-<!--
-    Legacy desktop companion integration enabled.
-    Supported link scheme: app://local/docs/<filename>
-    Requires Obsidian companion app (see /backups/old_site_map.txt for setup notes).
--->
-
-<?php include 'includes/footer.php'; ?>
-</body>
-</html>

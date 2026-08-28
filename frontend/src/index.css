@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-kumari-dark: #0a0a0a;
+  --color-kumari-gray: #1c1c1c;
+  --color-kumari-parchment: #f4ebd8;
+  --color-kumari-bronze: #cda434;
+  --color-kumari-gold: #d4af37;
+  --color-kumari-brown: #3e2723;
+  --color-kumari-stone: #8d8d8d;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-kumari-dark text-kumari-parchment font-serif antialiased;
+    background-image: radial-gradient(circle at center, rgba(30, 30, 30, 0.4) 0%, transparent 100%);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif text-kumari-gold tracking-wide;
+  }
+}
+
+@utility kumari-border {
+  @apply border border-kumari-bronze/30 shadow-[0_0_15px_rgba(205,164,52,0.1)];
+}
+
+@utility kumari-card {
+  @apply bg-kumari-gray/80 backdrop-blur-md border border-kumari-bronze/30 shadow-[0_0_15px_rgba(205,164,52,0.1)] rounded-sm transition-all duration-300;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #3e2723;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #cda434;
+}
