@@ -30,6 +30,7 @@ export default function Navbar() {
             <div className="ml-10 flex items-baseline space-x-8">
               <Link to="/" className="text-kumari-stone hover:text-kumari-gold transition-colors duration-200 font-mono text-sm tracking-wide">Archive</Link>
               <Link to="/about" className="text-kumari-stone hover:text-kumari-gold transition-colors duration-200 font-mono text-sm tracking-wide">Research</Link>
+              <Link to="/contact" className="text-kumari-stone hover:text-kumari-gold transition-colors duration-200 font-mono text-sm tracking-wide">Contact</Link>
             </div>
           </div>
 

@@ -1,25 +1,7 @@
 <?php
 include 'config.php';
 
-// CVE-2023-2110 style LFI: app://local/ prefix is stripped and the remainder
-// is resolved relative to the webroot. Intentionally unsanitized.
-if (isset($_GET['page'])) {
-    $raw = $_GET['page'];
-    if (strpos($raw, 'app://local/') === 0) {
-        $rel = substr($raw, strlen('app://local/'));
-    } else {
-        $rel = $raw;
-    }
-    $base = '/var/www/html/';
-    $path = $base . $rel;
-    if (file_exists($path) && is_file($path)) {
-        header('Content-Type: text/plain');
-        readfile($path);
-        exit;
-    } else {
-        die('File not found: ' . htmlspecialchars($path));
-    }
-}
+
 
 $cookie = $_COOKIE['session'] ?? '';
 

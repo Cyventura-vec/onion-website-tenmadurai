@@ -1,0 +1,10 @@
+services:
+  tenmadurai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tenmadurai-ctf
+    hostname: tenmadurai.local
+    ports:
+      - "8080:80"
+    restart: unless-stopped
