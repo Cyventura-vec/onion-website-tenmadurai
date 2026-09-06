@@ -11,21 +11,21 @@ if (!$cookie) {
 $decrypted = decrypt_session($cookie);
 
 if ($decrypted === null) {
-    die('Error: Invalid session token.');
+    die('Error: Invalid session.');
 }
 
 $data = json_decode($decrypted, true);
 
 if ($data === null) {
-    die('Error: Session data corrupted.');
+    die('Error: Invalid session.');
 }
 
-if (!isset($data['role']) || $data['role'] !== 'admin') {
-    die('Error: Insufficient privileges.');
+if (!isset($data['role']) || $data['role'] !== 'admin' || !isset($data['access_level']) || (int)$data['access_level'] < 5) {
+    die('Error: Invalid session.');
 }
 
 if (!isset($data['expires']) || $data['expires'] !== '2027-09-23') {
-    die('Error: Session expired.');
+    die('Error: Invalid session.');
 }
 
 // Real documents live outside the webroot — unreachable via the LFI bug.
