@@ -48,6 +48,7 @@ foreach ([
 
 echo str_repeat('=', 80) . "\n";
 echo "ACCESS GRANTED — NEXT STAGE\n";
+echo "FLAG: CYV{KUMARI_ADMIN_0x1}\n";
 echo str_repeat('=', 80) . "\n";
 echo "VM Access: http://vm.projectkumari.onion:8080\n";
 echo "Credentials: researcher / " . htmlspecialchars($data['user']) . "\n";
