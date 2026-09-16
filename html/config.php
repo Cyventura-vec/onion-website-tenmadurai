@@ -1,13 +1,13 @@
 <?php
 // AES-256-CBC session encryption
 // Key must be exactly 32 bytes
-$key = hex2bin('4b1e9d2c6a7f0834c5e19a2b7d6f0e834b1e9d2c6a7f0834c5e19a2b7d6f0e83');
-$iv_size = openssl_cipher_iv_length('aes-256-cbc'); // 16
+$key = hex2bin("4b1e9d2c6a7f0834c5e19a2b7d6f0e834b1e9d2c6a7f0834c5e19a2b7d6f0e83");
+$iv_size = openssl_cipher_iv_length("aes-256-cbc"); // 16
 
 function encrypt_session($data) {
     global $key, $iv_size;
     $iv = openssl_random_pseudo_bytes($iv_size);
-    $ciphertext = openssl_encrypt($data, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
+    $ciphertext = openssl_encrypt($data, "aes-256-cbc", $key, OPENSSL_RAW_DATA, $iv);
     return base64_encode($iv . $ciphertext);
 }
 
@@ -42,7 +42,7 @@ function decrypt_session($cookie) {
         return null;
     }
 
-    $plaintext = openssl_decrypt($ciphertext, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
+    $plaintext = openssl_decrypt($ciphertext, "aes-256-cbc", $key, OPENSSL_RAW_DATA, $iv);
     if ($plaintext === false) {
         return null;
     }
