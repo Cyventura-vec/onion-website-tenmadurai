@@ -31,18 +31,13 @@ if (!isset($data['expires']) || $data['expires'] !== '2027-09-23') {
 if (isset($_GET['action']) && $_GET['action'] === 'contacts') {
     header('Content-Type: application/json');
     $log_file = __DIR__ . '/tmp/contacts.json';
-    $entries = [];
-
     if (file_exists($log_file)) {
-        $raw = file_get_contents($log_file);
-        $decoded = json_decode($raw ?: '[]', true);
-        $entries = is_array($decoded) ? $decoded : [];
+        $raw     = file_get_contents($log_file);
+        $entries = json_decode($raw, true);
+        echo json_encode(is_array($entries) ? $entries : []);
+    } else {
+        echo json_encode([]);
     }
-
-    echo json_encode([
-        'contacts' => $entries,
-        'count' => count($entries),
-    ], JSON_UNESCAPED_SLASHES);
     exit;
 }
 

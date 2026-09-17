@@ -6,8 +6,13 @@ export default defineConfig({
   plugins: [react()],
 
   server: {
+    host: true,
     proxy: {
       '/contact.php': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+      },
+      '/admin.php': {
         target: 'http://localhost:8080',
         changeOrigin: true,
       },
