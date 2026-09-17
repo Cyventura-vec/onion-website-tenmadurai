@@ -28,6 +28,24 @@ if (!isset($data['expires']) || $data['expires'] !== '2027-09-23') {
     die('Error: Invalid session.');
 }
 
+if (isset($_GET['action']) && $_GET['action'] === 'contacts') {
+    header('Content-Type: application/json');
+    $log_file = __DIR__ . '/tmp/contacts.json';
+    $entries = [];
+
+    if (file_exists($log_file)) {
+        $raw = file_get_contents($log_file);
+        $decoded = json_decode($raw ?: '[]', true);
+        $entries = is_array($decoded) ? $decoded : [];
+    }
+
+    echo json_encode([
+        'contacts' => $entries,
+        'count' => count($entries),
+    ], JSON_UNESCAPED_SLASHES);
+    exit;
+}
+
 // Real documents live outside the webroot — unreachable via the LFI bug.
 $classified_dir = '/opt/kumari_classified/';
 
