@@ -4,8 +4,8 @@ import { ShieldAlert, Lock, Unlock, Server, Users, Mail, Clock, Globe, ChevronDo
 
 function formatDate(raw) {
   if (!raw) return '—'
-  const d = new Date(raw)
-  return Number.isNaN(d.getTime()) ? raw : d.toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })
+  const d = new Date(raw.replace(' ', 'T'))
+  return isNaN(d) ? raw : d.toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' })
 }
 
 function maskEmail(email) {
@@ -92,19 +92,11 @@ function ContactsPanel() {
 
   useEffect(() => {
     fetch('/admin.php?action=contacts', { redirect: 'manual' })
-      .then(response => {
-        const contentType = response.headers.get('content-type') || ''
-
-        if (!response.ok || !contentType.includes('application/json')) {
-          throw new Error('fetch failed')
-        }
-
-        return response.json()
+      .then(r => {
+        if (!r.ok && r.type !== 'opaqueredirect') throw new Error('fetch failed')
+        return r.json()
       })
-      .then(data => {
-        const entries = Array.isArray(data) ? data : data.contacts
-        setContacts(Array.isArray(entries) ? entries.slice().reverse() : [])
-      })
+      .then(data => setContacts(Array.isArray(data) ? data.slice().reverse() : []))
       .catch(() => setError('Unable to load contact log.'))
   }, [])
 
